@@ -15,32 +15,59 @@ const createUser = (req, res) => {
     .catch((err) => {
       res.send(err);
     });
-    
 };
 const showuser = (req, res) => {
   const { getUser } = req.body;
-  
+
   userModel
-    .findOne({userName:getUser}).exec()
+    .findOne({ userName: getUser })
+    .exec()
     .then((result) => {
       res.json(result);
     })
     .catch((err) => {
       res.send(err);
     });
-}
+};
 const showusers = (req, res) => {
-  const { getUser } = req.body;
-  
+  const { getUsers } = req.body;
+
   userModel
-    .find({userName:getUser}).exec()
+    .find({ userName: getUsers })
+    .exec()
     .then((result) => {
       res.json(result);
     })
     .catch((err) => {
       res.send(err);
     });
-}
+};
 
-module.exports = { createUser,showuser,showusers };
+const updateone = (req, res) => {
+  const { upu } = req.params
 
+  userModel
+    .updateOne({ id: upu })
+    .exec()
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+const DelOne = (req, res) => {
+  const { del } = req.params
+
+  userModel
+    .deleteOne({ id: del })
+    .exec()
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+module.exports = { createUser, showuser, showusers,updateone ,DelOne};
