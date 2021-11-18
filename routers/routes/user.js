@@ -1,10 +1,9 @@
 const express = require("express")
-const { createUser } = require("./../controller/user")
+const { createUser , showuser,showusers} = require("./../controller/user")
 const userRouter = express.Router()
 
-userRouter.get("/user" , (req,res) => {
-    res.json("asdasdasd")
-})
-
+userRouter.get("/user" , showuser)
+userRouter.get("/users" , showusers)
 userRouter.post("/add",createUser)
+// userRouter.put('/update', updateUsers)
 module.exports = userRouter

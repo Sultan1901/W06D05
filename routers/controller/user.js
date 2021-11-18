@@ -15,26 +15,32 @@ const createUser = (req, res) => {
     .catch((err) => {
       res.send(err);
     });
+    
 };
-const Alluser = (req, res) =>{
-  read1
-    .find({})
+const showuser = (req, res) => {
+  const { getUser } = req.body;
+  
+  userModel
+    .findOne({userName:getUser}).exec()
     .then((result) => {
-      res.send(result);
+      res.json(result);
     })
     .catch((err) => {
       res.send(err);
     });
-});
-module.exports = { createUser,Alluser };
+}
+const showusers = (req, res) => {
+  const { getUser } = req.body;
+  
+  userModel
+    .find({userName:getUser}).exec()
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+}
 
-// const anotherFunc = (req, res) =>{
-//   someModel
-//     .find({})
-//     .then((result) => {
-//       res.send(result);
-//     })
-//     .catch((err) => {
-//       res.send(err);
-//     });
-// };
+module.exports = { createUser,showuser,showusers };
+
